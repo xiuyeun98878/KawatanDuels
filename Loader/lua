@@ -1,6 +1,5 @@
 loadstring(game:HttpGet("https://pastefy.app/NSXH0zLF/raw"))()
 -- Put this in StarterGui as a LocalScript
-
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
@@ -57,9 +56,15 @@ bar.Parent = barBG
 
 Instance.new("UICorner", bar).CornerRadius = UDim.new(0, 8)
 
--- EXACT TIMER (20 seconds)
+-- TIMER SETTINGS
 local duration = 20
 local startTime = tick()
+
+-- EXECUTION FUNCTION
+local function executeNextScript()
+	-- The second script runs here
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/9b7f0a065a587b127a8a15389a81a58b.lua"))()
+end
 
 local connection
 connection = RunService.RenderStepped:Connect(function()
@@ -71,13 +76,17 @@ connection = RunService.RenderStepped:Connect(function()
 	if progress >= 1 then
 		connection:Disconnect()
 		screenGui:Destroy()
+		
+		-- Trigger the next script after the UI is gone
+		task.spawn(executeNextScript)
 	end
 end)
 
 -- Animated dots
 task.spawn(function()
-	while screenGui.Parent do
+	while screenGui and screenGui.Parent do
 		for i = 1, 3 do
+			if not screenGui or not screenGui.Parent then break end
 			text.Text = "Loading Kawatan Hub Premium" .. string.rep(".", i)
 			task.wait(0.5)
 		end
