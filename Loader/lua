@@ -1,2 +1,2 @@
 loadstring(game:HttpGet("https://pastefy.app/NSXH0zLF/raw"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Chiron-ux/Kawatan/27919507c04a426f982eccf82e32b49bae400ebf/Kawatan"))()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/9b7f0a065a587b127a8a15389a81a58b.lua"))()
